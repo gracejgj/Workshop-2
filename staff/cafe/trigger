@@ -1,0 +1,18 @@
+	
+	DELIMITER $$
+	CREATE OR REPLACE TRIGGER order_after_insert 
+	AFTER INSERT 
+	ON order_menu
+	FOR  EACH  ROW
+	
+	BEGIN
+	IF NEW.status = 'Pending' THEN 
+	SET NEW.status = 'Cooking;
+	UPDATE INTO order_menu
+	set ACTION_PERFORMED = "PENDING',
+	END
+	$$
+	
+	DELIMITER;
+	
+	https://dev.mysql.com/doc/refman/8.0/en/trigger-syntax.html
